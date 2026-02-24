@@ -10,6 +10,57 @@ public class Main {
         IssueService issueService = new IssueService();
         ActionHistoryService actionService = new ActionHistoryService();
 
+        // Initialize all data
+        studentService.initializeStudents();
+        appointmentService.initializeAppointments();
+        issueService.initializeIssues();
+        actionService.initializeActions();
+
+        // Perform initial tasks as per requirements
+        System.out.println("===== Initial Setup =====\n");
+
+        // 1) Student tasks
+        System.out.println("--- Student Database (ArrayList) ---");
+        studentService.printStudents();
+        System.out.println();
+        studentService.removeLowGPA();
+        System.out.println();
+        studentService.findHighestGPA();
+        studentService.insertAtIndex();
+        System.out.println();
+        studentService.printStudents();
+        System.out.println();
+
+        // 2) Appointment tasks
+        System.out.println("--- Appointments (LinkedList) ---");
+        appointmentService.printAppointments();
+        System.out.println();
+        appointmentService.cancelLast();
+        appointmentService.showFirstAndLast();
+        System.out.println();
+        appointmentService.printAppointments();
+        System.out.println();
+
+        // 3) Issue tasks
+        System.out.println("--- Emergency Issues (PriorityQueue) ---");
+        issueService.showMostUrgent();
+        issueService.resolveIssues();
+        System.out.println();
+        issueService.printRemainingIssues();
+        System.out.println();
+
+        // 4) Action History tasks
+        System.out.println("--- Action History (ArrayDeque) ---");
+        actionService.printHistory();
+        System.out.println();
+        actionService.undoLastAction();
+        actionService.addRequestedTranscript();
+        actionService.showFirstAndLast();
+        System.out.println();
+        actionService.printHistory();
+        System.out.println();
+
+        // Menu-driven system
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -28,22 +79,30 @@ public class Main {
 
             switch (choice) {
                 case 1:
-                    // TODO
+                    studentService.printStudents();
                     break;
                 case 2:
-                    // TODO
+                    appointmentService.printAppointments();
+                    appointmentService.showFirstAndLast();
                     break;
                 case 3:
-                    // TODO
+                    issueService.showMostUrgent();
+                    issueService.printRemainingIssues();
                     break;
                 case 4:
-                    // TODO
+                    actionService.printHistory();
+                    actionService.showFirstAndLast();
                     break;
                 case 5:
-                    // TODO
+                    scanner.nextLine(); // consume newline
+                    System.out.print("Enter issue description: ");
+                    String description = scanner.nextLine();
+                    System.out.print("Enter urgency level (1 = most urgent): ");
+                    int urgency = scanner.nextInt();
+                    issueService.addNewIssue(description, urgency);
                     break;
                 case 6:
-                    // TODO
+                    actionService.undoLastAction();
                     break;
                 case 7:
                     System.out.println("Exiting... 👋");

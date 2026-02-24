@@ -9,22 +9,41 @@ public class IssueService {
     private PriorityQueue<Issue> issues = new PriorityQueue<>();
 
     public void initializeIssues() {
-        // TODO: Add at least 5 issues
+        issues.add(new Issue("Failed final exam", 2));
+        issues.add(new Issue("Scholarship revoked", 1));
+        issues.add(new Issue("Missing transcript", 4));
+        issues.add(new Issue("Course registration error", 3));
+        issues.add(new Issue("Dormitory issue", 5));
     }
 
     public void showMostUrgent() {
-        // TODO: Show most urgent issue
+        if (!issues.isEmpty()) {
+            System.out.println("Most urgent issue: " + issues.peek());
+        } else {
+            System.out.println("No issues.");
+        }
     }
 
     public void resolveIssues() {
-        // TODO: Remove 2 issues
+        for (int i = 0; i < 2; i++) {
+            if (!issues.isEmpty()) {
+                Issue resolved = issues.poll();
+                System.out.println("Resolved: " + resolved);
+            }
+        }
     }
 
     public void printRemainingIssues() {
-        // TODO: Print using iterator
+        System.out.println("=== Remaining Issues ===");
+        Iterator<Issue> it = issues.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next());
+        }
     }
 
     public void addNewIssue(String description, int urgency) {
-        // TODO: Add new issue
+        Issue newIssue = new Issue(description, urgency);
+        issues.add(newIssue);
+        System.out.println("Added new issue: " + newIssue);
     }
 }
